@@ -59,10 +59,10 @@ class BinarySearchTree {
   find(data) {
     let currentNode = this.node;
 
-    while(currentNode) {
-      if(currentNode.data == data) {
+    while (currentNode) {
+      if (currentNode.data == data) {
         return currentNode;
-      } else if(currentNode.data < data) {
+      } else if (currentNode.data < data) {
         currentNode = currentNode.right;
       } else if (currentNode.data > data) {
         currentNode = currentNode.left;
@@ -76,15 +76,25 @@ class BinarySearchTree {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
-  
-  min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
 
+  min() {
+    let currentNode = this.node;
+
+    while (currentNode.left) {
+      currentNode = currentNode.left;
+    }
+
+    return currentNode.data;
+  }
+  
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let currentNode = this.node;
+  
+    while (currentNode.right) {
+      currentNode = currentNode.right;
+    }
+  
+    return currentNode.data;
   }
 }
 
