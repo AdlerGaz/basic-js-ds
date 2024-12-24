@@ -22,9 +22,17 @@ class BinarySearchTree {
       let currentNode = this.node;
       while (true) {
         if (currentNode.data > data) {
-          currentNode = currentNode.left ? currentNode.left :(new Node(data));
+          if (currentNode.left) {
+            currentNode = currentNode.left;
+          } else {
+            currentNode.left = new Node(data);
+          }
         } else if (currentNode.data < data) {
-          currentNode = currentNode.right ? currentNode.right : (new Node(data));
+          if (currentNode.right) {
+            currentNode = currentNode.right;
+          } else {
+            currentNode.right = new Node(data);
+          }
         } else {
           break;
         }
