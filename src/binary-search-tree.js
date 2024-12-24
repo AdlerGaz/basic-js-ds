@@ -41,10 +41,6 @@ class BinarySearchTree {
   }
 
   has(data) {
-    if (!this.node) {
-      return false;
-    }
-
     let currentNode = this.node;
 
     while (currentNode) {
@@ -61,10 +57,6 @@ class BinarySearchTree {
   }
 
   find(data) {
-    if (!this.node) {
-      return null;
-    }
-
     let currentNode = this.node;
 
     while(currentNode) {
@@ -84,7 +76,7 @@ class BinarySearchTree {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
-
+  
   min() {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
