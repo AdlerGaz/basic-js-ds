@@ -72,9 +72,79 @@ class BinarySearchTree {
     return null;
   }
 
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  remove(data) {
+    let currentNode = this.node;
+    let prevNode = this.node;
+    let changedNode;
+
+    if (currentNode.data == data) {
+      if (currentNode.right) {
+        changedNode = currentNode.right;
+
+        while (changedNode.left) {
+          changedNode = changedNode.left;
+        }
+
+        changedNode.left = currentNode.left;
+        this.node = currentNode.right;
+      } else if (currentNode.left) {
+        changedNode = currentNode.left;
+
+        while (changedNode.right) {
+          changedNode = changedNode.right;
+        }
+
+        changedNode.right = currentNode.right;
+        this.node = currentNode.left;
+      } else {
+        this.node = null;
+      }
+    }
+
+    while (currentNode) {
+      if (currentNode.data > data) {
+        prevNode = currentNode;
+        currentNode = currentNode.left;
+      } else if (currentNode.data < data) {
+        prevNode = currentNode;
+        currentNode = currentNode.right;
+      } else if (currentNode.data == data) {
+        changedNode = currentNode;
+
+        if (changedNode.right) {
+          changedNode = changedNode.right;
+
+          while (changedNode.left) {
+            changedNode = changedNode.left;
+          }
+          changedNode.left = currentNode.left;
+
+          if (prevNode.data < data) {
+            prevNode.right = currentNode.right;
+          } else {
+            prevNode.left = currentNode.right;
+          }
+        } else if (changedNode.left) {
+          changedNode = changedNode.left;
+
+          while (changedNode.right) {
+            changedNode = changedNode.right;
+          }
+
+          changedNode.right = currentNode.right;
+          prevNode.left = currentNode.left;
+        } else {
+          if (prevNode.data > data) {
+            prevNode.left = null;
+          } else {
+            prevNode.right = null;
+          }
+        }
+        return;
+      } else {
+        return;
+      }
+    }
   }
 
   min() {
@@ -86,14 +156,14 @@ class BinarySearchTree {
 
     return currentNode.data;
   }
-  
+
   max() {
     let currentNode = this.node;
-  
+
     while (currentNode.right) {
       currentNode = currentNode.right;
     }
-  
+
     return currentNode.data;
   }
 }
